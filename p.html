@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelas XI RPL - SMK Sahida Lemahabang</title>
+
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+  :root {
+    --bg: #0f172a;
+    --bg-card: #1e293b;
+    --text: #e2e8f0;
+    --abu: #94a3b8;
+    --biru: #3b82f6;
+    --biru-muda: #1e40af;
+    --radius: 12px;
+    --bayangan: 0 6px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  * {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    scroll-behavior: smooth;
+    line-height: 1.6;
+    /* Tambahkan padding-top untuk menghindari konten tertutup navbar */
+    padding-top: 60px;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background: rgba(30, 41, 59, 0.95);
+    border-bottom: 1px solid #334155;
+    backdrop-filter: blur(6px);
+  }
+
+  .nav {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--biru);
+    font-size: 18px;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--biru);
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    transition: all 0.3s ease;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--biru);
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  nav a:hover {
+    background: var(--biru-muda);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  /* BUTTON */
+  .btn {
+    background: var(--biru);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
+  }
+
+  .btn:hover::before {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    left: -150px;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e3a8a, #0f172a);
+    position: relative;
+    text-align: center;
+    padding: 50px 50px;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    animation: fadeInDown 1s ease-out;
+  }
+
+  .hero p {
+    margin-bottom: 20px;
+    font-weight: 300;
+    animation: fadeInUp 1s ease-out 0.3s both;
+  }
+
+  .hero .btn {
+    animation: fadeInUp 1s ease-out 0.6s both;
+  }
+
+  /* SECTION */
+  section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+    /* Tambahkan scroll margin agar tidak tertutup navbar */
+    scroll-margin-top: 60px;
+  }
+
+  h2 {
+    color: var(--biru);
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  /* PROFIL */
+  .profil {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .profil .card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--bayangan);
+    flex: 1 1 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  .profil .card.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .profil .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  }
+
+  .profil ul {
+    list-style: none;
+  }
+
+  .profil li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .profil li::before {
+    content: "•";
+    color: var(--biru);
+    position: absolute;
+    left: 0;
+  }
+
+  .profil-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    text-align: center;
+  }
+
+  .stat {
+    flex: 1;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--biru);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--abu);
+  }
+
+  /* STRUKTUR KELAS */
+  .struktur-kelas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .struktur-level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .struktur-level-title {
+    font-weight: 600;
+    color: var(--biru);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .struktur-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .struktur-item {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 15px;
+    text-align: center;
+    box-shadow: var(--bayangan);
+    transition: all 0.3s ease;
+    min-width: 150px;
+    border: 1px solid transparent;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  .struktur-item.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .struktur-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: var(--biru);
+  }
+
+  .struktur-nama {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+
+  .struktur-jabatan {
+    font-size: 0.85rem;
+    color: var(--abu);
+  }
+
+  .struktur-connector {
+    height: 30px;
+    width: 2px;
+    background: var(--biru);
+    margin: 5px 0;
+  }
+
+  /* JADWAL */
+  .jadwal-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--bayangan);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+
+  .jadwal-container.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+  th,
+  td {
+    border: 1px solid #334155;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  th {
+    background: var(--biru);
+    color: white;
+  }
+
+  td {
+    background: var(--bg-card);
+  }
+
+  td:hover {
+    background: var(--biru-muda);
+    transform: scale(1.05);
+  }
+
+  .controls {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: var(--bg-card);
+    color: var(--text);
+    transition: all 0.3s ease;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: var(--biru);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+
+  /* GALERI */
+  .galeri-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--bayangan);
+  }
+
+  .galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    justify-items: center;
+  }
+
+  .galeri-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: var(--bayangan);
+    transition: transform 0.3s, box-shadow 0.3s;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  .galeri-grid img.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .galeri-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .lightbox.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    border-radius: 10px;
+    transform: scale(0.8);
+    transition: transform 0.3s;
+  }
+
+  .lightbox.open img {
+    transform: scale(1);
+  }
+
+  /* ANGGOTA */
+  .anggota-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--bayangan);
+  }
+
+  .search-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .search {
+    padding: 12px 40px 12px 15px;
+    border-radius: var(--radius);
+    border: 1px solid #475569;
+    background: var(--bg-card);
+    color: var(--text);
+    width: 100%;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: var(--bayangan);
+  }
+
+  .search:focus {
+    outline: none;
+    border-color: var(--biru);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    background: #1a2438;
+  }
+
+  .search::placeholder {
+    color: var(--abu);
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--abu);
+    font-size: 18px;
+  }
+
+  .anggota-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .anggota-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 15px;
+    text-align: center;
+    box-shadow: var(--bayangan);
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+
+  .anggota-card.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .anggota-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: var(--biru);
+  }
+
+  .anggota-card:active {
+    transform: scale(0.95);
+    transition: transform 0.1s;
+  }
+
+  .anggota-card p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text);
+  }
+
+  /* KONTAK */
+  .kontak-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--bayangan);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input,
+  textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: var(--bg-card);
+    color: var(--text);
+    font-size: 15px;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  input.show,
+  textarea.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--biru);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+    transform: scale(1.02);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1e293b;
+    padding: 20px;
+    text-align: center;
+    color: var(--abu);
+    font-size: 14px;
+    margin-top: 30px;
+  }
+
+  /* MUSIC BUTTON */
+  #musicBtn {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    padding: 10px 14px;
+    border: none;
+    background: var(--biru);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 99;
+    display: none;
+    transition: all 0.3s ease;
+  }
+
+  #musicBtn.show {
+    display: block;
+  }
+
+  #musicBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #musicBtn:active {
+    transform: scale(0.95);
+  }
+
+  /* TOP BUTTON */
+  #topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 14px;
+    border: none;
+    background: var(--biru);
+    color: white;
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  #topBtn.show {
+    display: block;
+  }
+
+  #topBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  #topBtn:active {
+    transform: scale(0.95);
+  }
+
+  /* ANIMASI KEYFRAMES */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    body {
+      padding-top: 50px;
+    }
+    
+    section {
+      scroll-margin-top: 50px;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    nav ul {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: var(--bg-card);
+      border-radius: 8px;
+      margin-top: 10px;
+      padding: 10px 0;
+      box-shadow: var(--bayangan);
+    }
+
+    nav ul.show {
+      display: flex;
+    }
+
+    nav a {
+      display: block;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .hero {
+      min-height: 50vh;
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      font-size: 1.6rem;
+    }
+
+    table,
+    th,
+    td {
+      font-size: 13px;
+      padding: 8px;
+    }
+
+    .search {
+      font-size: 14px;
+      padding: 10px 35px 10px 12px;
+    }
+
+    .search-icon {
+      font-size: 16px;
+      right: 12px;
+    }
+
+    .struktur-item {
+      min-width: 120px;
+      padding: 12px;
+    }
+
+    .struktur-nama {
+      font-size: 0.9rem;
+    }
+
+    .struktur-jabatan {
+      font-size: 0.8rem;
+    }
+
+    /* Perbaikan struktur untuk mobile */
+    .struktur-row {
+      gap: 10px;
+    }
+    
+    .struktur-connector {
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .struktur-item {
+      min-width: 100px;
+      padding: 10px;
+    }
+    
+    .struktur-nama {
+      font-size: 0.85rem;
+    }
+    
+    .struktur-jabatan {
+      font-size: 0.75rem;
+    }
+    
+    .anggota-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+  }
+</style>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><i class="fa-solid fa-laptop-code"></i> XI RPL </div>
+    <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+    <nav>
+      <ul id="menuList">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#struktur">Struktur</a></li>
+        <li><a href="#jadwal">Jadwal</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#anggota">Anggota</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>𝐊𝐞𝐥𝐚𝐬 𝐗𝐈 𝐑𝐏𝐋 - 𝐒𝐌𝐊 𝐒𝐚𝐡𝐢𝐝𝐚 𝐋𝐞𝐦𝐚𝐡𝐚𝐛𝐚𝐧𝐠</h1>
+    <p>Selamat datang di website resmi kelas XI RPL, tempat berbagi informasi, kenangan, dan semangat kebersamaan!</p>
+    <a href="#profil" class="btn" id="profilBtn">Lihat Profil Kelas</a>
+  </div>
+</section>
+
+<section id="profil">
+  <h2>Profil Kelas</h2>
+  <div class="profil">
+    <div class="card">
+      <h3>Tentang Kelas XI RPL</h3>
+      <p>Kelas XI RPL (Rekayasa Perangkat Lunak) adalah kelas dengan 23 siswa yang bersemangat dalam mempelajari teknologi dan pemrograman. Kami adalah bagian dari jurusan Rekayasa Perangkat Lunak di SMK Sahida Lemahabang.</p>
+      
+      <h4 style="margin-top: 15px; color: var(--biru);">Visi Kelas</h4>
+      <p>"Menjadi kelas yang unggul dalam akademik, kreatif dalam berkarya, dan solid dalam kebersamaan."</p>
+      
+      <h4 style="margin-top: 15px; color: var(--biru);">Misi Kelas</h4>
+      <ul>
+        <li>Meningkatkan prestasi akademik melalui belajar bersama</li>
+        <li>Mengembangkan keterampilan programming dan soft skills</li>
+        <li>Menjalin hubungan yang harmonis antar sesama siswa</li>
+        <li>Berkontribusi positif untuk sekolah dan masyarakat</li>
+      </ul>
+      
+      <div class="profil-stats">
+        <div class="stat">
+          <span class="stat-number">23</span>
+          <span class="stat-label">Siswa</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">14</span>
+          <span class="stat-label">Laki²</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">9</span>
+          <span class="stat-label">Perempuan</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>Informasi Kelas</h3>
+      <p><strong>Jurusan:</strong> Rekayasa Perangkat Lunak (RPL)</p>
+      <p><strong>Kelas:</strong> XI (Sebelas)</p>
+      <p><strong>Wali Kelas:</strong> Ibu Wulandari S.Kom</p>
+      <p><strong>Jumlah Siswa:</strong> 23 orang</p>
+      <p><strong>Lokasi:</strong> SMK Sahida Lemahabang</p>
+    </div>
+  </div>
+</section>
+
+<section id="struktur">
+  <h2>Struktur Kelas XI RPL</h2>
+  <div class="struktur-kelas">
+    <!-- Level 1: Wali Kelas -->
+    <div class="struktur-level">
+      <div class="struktur-level-title">Wali Kelas</div>
+      <div class="struktur-row">
+        <div class="struktur-item">
+          <div class="struktur-nama">Ibu Wulandari S.Kom</div>
+          <div class="struktur-jabatan">Wali Kelas</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Level 2: Ketua & Wakil -->
+    <div class="struktur-connector"></div>
+    <div class="struktur-level">
+      <div class="struktur-level-title">Pengurus Kelas</div>
+      <div class="struktur-row">
+        <div class="struktur-item">
+          <div class="struktur-nama">Rafi</div>
+          <div class="struktur-jabatan">Ketua Kelas</div>
+        </div>
+        <div class="struktur-item">
+          <div class="struktur-nama">Lutfi</div>
+          <div class="struktur-jabatan">Wakil Ketua</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Level 3: Sekretaris & Bendahara -->
+    <div class="struktur-connector"></div>
+    <div class="struktur-level">
+      <div class="struktur-level-title">Sekretaris & Bendahara</div>
+      <div class="struktur-row">
+        <div class="struktur-item">
+          <div class="struktur-nama">Lestari & Dhea</div>
+          <div class="struktur-jabatan">Sekretaris</div>
+        </div>
+        <div class="struktur-item">
+          <div class="struktur-nama">Anin & Olive</div>
+          <div class="struktur-jabatan">Bendahara</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Level 4: Koordinator Bidang -->
+    <div class="struktur-connector"></div>
+    <div class="struktur-level">
+      <div class="struktur-level-title">Koordinator Kelas</div>
+      <div class="struktur-row">
+        <div class="struktur-item">
+          <div class="struktur-nama">Iffah</div>
+          <div class="struktur-jabatan">Koord. Absen</div>
+        </div>
+        <div class="struktur-item">
+          <div class="struktur-nama">Naufal</div>
+          <div class="struktur-jabatan">Koord. Kerohanian</div>
+        </div>
+        <div class="struktur-item">
+          <div class="struktur-nama">Sucitra & Ninda</div>
+          <div class="struktur-jabatan">Koord. Kebersihan</div>
+        </div>
+        <div class="struktur-item">
+          <div class="struktur-nama">Bayu & Avaro</div>
+          <div class="struktur-jabatan">Koord. Keamanan</div>
+        </div>
+         <div class="struktur-item">
+          <div class="struktur-nama">Anom, Rifa & Adli</div>
+          <div class="struktur-jabatan">Koord. Olahraga</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="jadwal">
+  <h2>Jadwal Pelajaran</h2>
+  <div class="jadwal-container">
+    <div class="controls">
+      <label>Pilih Hari:</label>
+      <select id="hariSelect">
+        <option value="all">Semua Hari</option>
+        <option>Senin</option>
+        <option>Selasa</option>
+        <option>Rabu</option>
+        <option>Kamis</option>
+        <option>Jumat</option>
+      </select>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table id="tabelJadwal">
+        <thead>
+          <tr>
+            <th>Hari</th>
+            <th colspan="5">Pelajaran</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Senin</td>
+            <td>B. Inggris</td>
+            <td>Sejarah Indo</td>
+            <td>PKN</td>
+            <td>B. Indo</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Selasa</td>
+            <td>B. Sunda</td>
+            <td>Pemrograman Web</td>
+            <td>PKWU</td>
+            <td>PBO</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Rabu</td>
+            <td>B. Arab</td>
+            <td>Basis Data</td>
+            <td>PAI</td>
+            <td>PBO</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Kamis</td>
+            <td>Matematika</td>
+            <td>PJOK</td>
+            <td>Pemrograman Web</td>
+            <td>BTQ</td>
+            <td>Basis Data</td>
+          </tr>
+          <tr>
+            <td>Jumat</td>
+            <td>Aswaja</td>
+            <td>PPL</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="galeri">
+  <h2>Galeri Kegiatan</h2>
+  <div class="galeri-container">
+    <div class="galeri-grid">
+      <img src="kelas1.jpg" alt="Hari Batik">
+      <img src="kelas.jpg" alt="Maulid">
+      <img src="kelas2.jpg" alt="Maulid 2">
+      <img src="kelas3.jpg" alt="Rujak">
+      <img src="kelas4.jpg" alt="Pilsis">
+      <img src="kelas5.jpg" alt="Porak">
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <img src="" alt="">
+</div>
+
+<section id="anggota">
+  <h2>Anggota Kelas</h2>
+  <div class="anggota-container">
+    <div class="search-container">
+      <input type="text" id="cari" class="search" placeholder="Cari nama anggota...">
+      <div class="search-icon">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+    <div class="anggota-grid" id="anggotaGrid">
+      <div class="anggota-card" data-nama="Adli"><p><b>Adli</b></p></div>
+      <div class="anggota-card" data-nama="Andin"><p><b>Andin</b></p></div>
+      <div class="anggota-card" data-nama="Anin"><p><b>Anin</b></p></div>
+      <div class="anggota-card" data-nama="Anom"><p><b>Anom</b></p></div>
+      <div class="anggota-card" data-nama="Avaro"><p><b>Avaro</b></p></div>
+      <div class="anggota-card" data-nama="Bayu"><p><b>Bayu</b></p></div>
+      <div class="anggota-card" data-nama="Citra"><p><b>Citra</b></p></div>
+      <div class="anggota-card" data-nama="Dea"><p><b>Dea</b></p></div>
+      <div class="anggota-card" data-nama="Iffah"><p><b>Iffah</b></p></div>
+      <div class="anggota-card" data-nama="Ilham"><p><b>Ilham</b></p></div>
+      <div class="anggota-card" data-nama="Lestari"><p><b>Lestari</b></p></div>
+      <div class="anggota-card" data-nama="Luky"><p><b>Luky</b></p></div>
+      <div class="anggota-card" data-nama="Lutfi"><p><b>Lutfi</b></p></div>
+      <div class="anggota-card" data-nama="Naufal"><p><b>Naufal</b></p></div>
+      <div class="anggota-card" data-nama="Ninda"><p><b>Ninda</b></p></div>
+      <div class="anggota-card" data-nama="Olive"><p><b>Olive</b></p></div>
+      <div class="anggota-card" data-nama="Rafi"><p><b>Rafi</b></p></div>
+      <div class="anggota-card" data-nama="Regan"><p><b>Regan</b></p></div>
+      <div class="anggota-card" data-nama="Rifa"><p><b>Rifa</b></p></div>
+      <div class="anggota-card" data-nama="Rifal"><p><b>Rifal</b></p></div>
+      <div class="anggota-card" data-nama="Sukron"><p><b>Sukron</b></p></div>
+      <div class="anggota-card" data-nama="Wulan"><p><b>Wulan</b></p></div>
+      <div class="anggota-card" data-nama="Zibran"><p><b>Zibran</b></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <h2>Kontak</h2>
+  <div class="kontak-container">
+    <!-- Form yang akan mengirim email ke claas11rpl@gmail.com -->
+    <form id="formKontak" action="https://formspree.io/f/xblzwndd" method="POST">
+      <input type="text" name="nama" placeholder="Nama" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="pesan" placeholder="Pesan" required></textarea>
+      <button class="btn" type="submit">Kirim</button>
+    </form>
+    <p style="margin-top:10px;color:#94a3b8;text-align:center">Alamat: SMK Sahida Lemahabang · IG: @claas11rpl.skadala</p>
+  </div>
+</section>
+
+<footer>
+  © <span id="tahun"></span> Kelas XI RPL - SMK Sahida Lemahabang
+</footer>
+
+<!-- Elemen audio -->
+<audio id="backgroundMusic" loop>
+  <source src="partyanthem.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung elemen audio.
+</audio>
+
+<!-- Tombol kontrol musik -->
+<button id="musicBtn"><i class="fa-solid fa-pause"></i></button>
+
+<!-- Tombol ke atas -->
+<button id="topBtn"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+  // Tahun otomatis di footer
+  document.getElementById("tahun").textContent = new Date().getFullYear();
+
+  // Tombol ke atas
+  const topBtn = document.getElementById("topBtn");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      topBtn.classList.add("show");
+    } else {
+      topBtn.classList.remove("show");
+    }
+  });
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Menu mobile toggle
+  const menuToggle = document.getElementById("menuToggle");
+  const menuList = document.getElementById("menuList");
+  menuToggle.addEventListener("click", () => {
+    menuList.classList.toggle("show");
+  });
+
+  // Menutup menu hamburger saat link dipilih
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (menuList.classList.contains('show')) {
+        menuList.classList.remove('show');
+      }
+    });
+  });
+
+  // Filter jadwal berdasarkan hari - DIPERBAIKI
+  const hariSelect = document.getElementById("hariSelect");
+  const tabelJadwal = document.getElementById("tabelJadwal");
+  hariSelect.addEventListener("change", () => {
+    const hari = hariSelect.value;
+    const rows = tabelJadwal.querySelectorAll("tbody tr");
+
+    for (let i = 0; i < rows.length; i++) {
+      const td = rows[i].querySelector("td:first-child");
+      if (!td) continue;
+      if (hari === "all" || td.textContent === hari) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  });
+
+  // Pencarian anggota - DIPERBAIKI
+  const inputCari = document.getElementById("cari");
+  const anggotaGrid = document.getElementById("anggotaGrid");
+  const cards = anggotaGrid.querySelectorAll(".anggota-card");
+
+  inputCari.addEventListener("input", () => {
+    const filter = inputCari.value.toLowerCase();
+    let found = false;
+    
+    for (let i = 0; i < cards.length; i++) {
+      const nama = cards[i].getAttribute("data-nama").toLowerCase();
+      if (nama.includes(filter)) {
+        cards[i].style.display = "";
+        found = true;
+      } else {
+        cards[i].style.display = "none";
+      }
+    }
+    
+    // Tampilkan pesan jika tidak ada hasil
+    const existingMessage = document.getElementById("noResults");
+    if (!found && !existingMessage) {
+      const message = document.createElement("div");
+      message.id = "noResults";
+      message.style.textAlign = "center";
+      message.style.padding = "20px";
+      message.style.color = "var(--abu)";
+      message.innerHTML = `<p>Tidak ada anggota yang cocok dengan pencarian "<strong>${filter}</strong>"</p>`;
+      anggotaGrid.appendChild(message);
+    } else if (found && existingMessage) {
+      existingMessage.remove();
+    }
+  });
+
+  // Lightbox galeri
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = lightbox.querySelector("img");
+  const galeriImg = document.querySelectorAll(".galeri-grid img");
+
+  galeriImg.forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add("open");
+    });
+  });
+
+  lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("open");
+  });
+
+  // Form kontak dengan pengiriman email
+  const formKontak = document.getElementById("formKontak");
+  
+  // Handler untuk form submission
+  formKontak.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    // Ambil data form
+    const formData = new FormData(formKontak);
+    
+    // Tampilkan loading state
+    const submitBtn = formKontak.querySelector('.btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+    submitBtn.disabled = true;
+    
+    try {
+      // Kirim data ke Formspree
+      const response = await fetch(formKontak.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Sukses mengirim
+        alert("Pesan Anda telah terkirim ke email kelas! Terima kasih 😊");
+        formKontak.reset();
+      } else {
+        // Gagal mengirim
+        alert("Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi.");
+      }
+    } catch (error) {
+      // Error jaringan
+      alert("Maaf, terjadi kesalahan jaringan. Silakan coba lagi.");
+      console.error('Error:', error);
+    } finally {
+      // Reset tombol
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Kontrol musik
+  const backgroundMusic = document.getElementById("backgroundMusic");
+  const musicBtn = document.getElementById("musicBtn");
+
+  // Coba memutar musik secara otomatis
+  window.addEventListener('load', function() {
+    // Coba memutar musik dengan autoplay
+    const playPromise = backgroundMusic.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Autoplay berhasil
+        musicBtn.classList.add("show");
+        musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      }).catch(error => {
+        // Autoplay diblokir, tampilkan tombol musik
+        musicBtn.classList.add("show");
+        musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      });
+    }
+  });
+
+  // Kontrol tombol musik
+  musicBtn.addEventListener("click", () => {
+    if (backgroundMusic.paused) {
+      backgroundMusic.play();
+      musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    } else {
+      backgroundMusic.pause();
+      musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+    }
+  });
+
+  // Update ikon tombol musik saat musik berakhir
+  backgroundMusic.addEventListener('ended', function() {
+    musicBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  });
+
+  // ANIMASI SCROLL - DIPERBAIKI
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Jika elemen sudah terlihat di viewport
+        if (entry.target.id === 'profil') {
+          // Animasikan card profil satu per satu
+          const cards = entry.target.querySelectorAll('.card');
+          cards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('show');
+            }, index * 200); // Delay 200ms antar card
+          });
+        } 
+        else if (entry.target.id === 'struktur') {
+          // Animasikan struktur kelas
+          const strukturItems = entry.target.querySelectorAll('.struktur-item');
+          strukturItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('show');
+            }, index * 100); // Delay 100ms antar item
+          });
+        }
+        else if (entry.target.id === 'jadwal') {
+          // Animasikan container jadwal
+          setTimeout(() => {
+            entry.target.querySelector('.jadwal-container').classList.add('show');
+          }, 300);
+        }
+        else if (entry.target.id === 'galeri') {
+          // Animasikan gambar galeri satu per satu
+          const images = entry.target.querySelectorAll('.galeri-grid img');
+          images.forEach((img, index) => {
+            setTimeout(() => {
+              img.classList.add('show');
+            }, index * 150); // Delay 150ms antar gambar
+          });
+        }
+        else if (entry.target.id === 'anggota') {
+          // Animasikan kartu anggota satu per satu
+          const anggotaCards = entry.target.querySelectorAll('.anggota-card');
+          anggotaCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('show');
+            }, index * 50); // Delay 50ms antar kartu
+          });
+          
+          // Animasikan input search
+          setTimeout(() => {
+            inputCari.classList.add('show');
+          }, 300);
+        }
+        else if (entry.target.id === 'kontak') {
+          // Animasikan form input satu per satu
+          const inputs = entry.target.querySelectorAll('input, textarea');
+          inputs.forEach((input, index) => {
+            setTimeout(() => {
+              input.classList.add('show');
+            }, index * 150); // Delay 150ms antar input
+          });
+        }
+        
+        // Hentikan pengamatan setelah animasi dijalankan
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Mulai mengamati semua section
+  document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+  });
+
+  // ANIMASI KLIK PADA ELEMEN - DIPERBAIKI
+  document.addEventListener('click', function(e) {
+    // Animasi untuk tombol (kecuali tombol "Lihat Profil")
+    if ((e.target.classList.contains('btn') || 
+        e.target.closest('.btn')) && 
+        !e.target.id === 'profilBtn' && 
+        !e.target.closest('#profilBtn')) {
+      const btn = e.target.classList.contains('btn') ? e.target : e.target.closest('.btn');
+      btn.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        btn.style.transform = '';
+      }, 150);
+    }
+    
+    // Animasi untuk kartu anggota
+    if (e.target.classList.contains('anggota-card') || 
+        e.target.closest('.anggota-card')) {
+      const card = e.target.classList.contains('anggota-card') ? e.target : e.target.closest('.anggota-card');
+      card.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        card.style.transform = '';
+      }, 150);
+    }
+    
+    // Animasi untuk gambar galeri
+    if (e.target.classList.contains('galeri-grid') && 
+        e.target.tagName === 'IMG') {
+      const img = e.target;
+      img.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        img.style.transform = '';
+      }, 150);
+    }
+  });
+</script>
+</body>
+</html>
